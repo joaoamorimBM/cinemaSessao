@@ -1,5 +1,5 @@
 import pool from '../database.js';
-import { Session } from '../types/session.type';
+import { Session } from '../types/session.type.js';
 
 // Omit é um utilitário do TypeScript que cria um tipo omitindo certas chaves.
 // Usamos aqui para dizer que na criação não precisamos do 'id'.
