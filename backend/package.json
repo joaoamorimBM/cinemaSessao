@@ -5,13 +5,13 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-  "//": "Este comentário é para limpar o cache do Railway",
-  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "postinstall": "npm run build"
-},
+    "//": "Este comentário é para limpar o cache do Railway",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

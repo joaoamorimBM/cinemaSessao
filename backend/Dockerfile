@@ -14,11 +14,8 @@ RUN npm install
 # Copiar o resto dos arquivos
 COPY . .
 
-# Verificar se o TypeScript está instalado
-RUN npm list typescript
-
 # Executar o build
-RUN /usr/local/bin/npm run build
+RUN npm run build
 
 EXPOSE 3000
 
