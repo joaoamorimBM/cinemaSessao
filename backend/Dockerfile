@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -14,17 +14,26 @@ RUN npm install -g typescript
 # Copiar arquivos de dependências
 COPY package*.json ./
 
-# Instalar dependências com --no-cache
-RUN npm install --no-cache
+# Instalar dependências
+RUN npm install
 
 # Copiar o resto dos arquivos
 COPY . .
 
-# Garantir permissões corretas
-RUN chmod -R 755 /app
-
 # Executar o build
 RUN npm run build
+
+# Imagem de produção
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copiar apenas os arquivos necessários da imagem de build
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
+
+# Instalar apenas dependências de produção
+RUN npm install --omit=dev
 
 EXPOSE 3000
 
