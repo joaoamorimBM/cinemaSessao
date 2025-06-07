@@ -1,9 +1,9 @@
 export interface Session {
   id: number;
-  horario: Date;
+  horario: string;
   preco: number;
   capacidade: number;
   ingressosVendidos: number;
-  filmeId: string;
-  salaId: string;
+  filmeId: number;
+  salaId: number;
 }
