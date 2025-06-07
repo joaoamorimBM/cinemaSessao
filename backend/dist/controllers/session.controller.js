@@ -1,3 +1,4 @@
+// src/controllers/session.controller.ts
 import { sessionRepository } from '../repositories/session.repository.js';
 export const sessionController = {
     createSession: async (req, res) => {
@@ -22,7 +23,8 @@ export const sessionController = {
     },
     getSessionById: async (req, res) => {
         try {
-            const id = parseInt(req.params.id, 10);
+            // CORREÇÃO AQUI: Removemos o parseInt
+            const { id } = req.params;
             const session = await sessionRepository.findById(id);
             if (!session) {
                 return res.status(404).json({ message: 'Sessão não encontrada.' });
@@ -36,12 +38,13 @@ export const sessionController = {
     },
     updateSession: async (req, res) => {
         try {
-            const id = parseInt(req.params.id, 10);
-            const success = await sessionRepository.update(id, req.body);
-            if (!success) {
+            // CORREÇÃO AQUI: Removemos o parseInt
+            const { id } = req.params;
+            const updatedSession = await sessionRepository.update(id, req.body);
+            if (!updatedSession) {
                 return res.status(404).json({ message: "Sessão não encontrada para atualizar." });
             }
-            return res.status(200).json({ id, ...req.body });
+            return res.status(200).json(updatedSession);
         }
         catch (error) {
             console.error(error);
@@ -50,9 +53,10 @@ export const sessionController = {
     },
     deleteSession: async (req, res) => {
         try {
-            const id = parseInt(req.params.id, 10);
-            const success = await sessionRepository.delete(id);
-            if (!success) {
+            // CORREÇÃO AQUI: Removemos o parseInt
+            const { id } = req.params;
+            const deletedSession = await sessionRepository.delete(id);
+            if (!deletedSession) {
                 return res.status(404).json({ message: "Sessão não encontrada para deletar." });
             }
             return res.status(204).send();
@@ -64,7 +68,8 @@ export const sessionController = {
     },
     purchaseTicket: async (req, res) => {
         try {
-            const id = parseInt(req.params.id, 10);
+            // CORREÇÃO AQUI: Removemos o parseInt
+            const { id } = req.params;
             const session = await sessionRepository.findById(id);
             if (!session)
                 return res.status(404).json({ message: 'Sessão não encontrada.' });
