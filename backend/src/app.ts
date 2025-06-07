@@ -1,5 +1,5 @@
 import express from 'express';
-import sessionRoutes from '../src/routes/session.routes.js'; // Importa nossas rotas de sessão
+import sessionRoutes from './routes/session.routes.js'; // Importa nossas rotas de sessão
 
 const app = express();
 

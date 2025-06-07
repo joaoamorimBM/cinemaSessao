@@ -1,13 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const session_controller_1 = require("../controllers/session.controller");
-const router = (0, express_1.Router)();
-router.post('/sessions', session_controller_1.sessionController.createSession);
-router.get('/sessions', session_controller_1.sessionController.getAllSessions);
-router.get('/sessions/:id', session_controller_1.sessionController.getSessionById);
-router.put('/sessions/:id', session_controller_1.sessionController.updateSession);
-router.delete('/sessions/:id', session_controller_1.sessionController.deleteSession);
+import { Router } from 'express';
+import { sessionController } from '../controllers/session.controller.js';
+const router = Router();
+router.post('/sessions', sessionController.createSession);
+router.get('/sessions', sessionController.getAllSessions);
+router.get('/sessions/:id', sessionController.getSessionById);
+router.put('/sessions/:id', sessionController.updateSession);
+router.delete('/sessions/:id', sessionController.deleteSession);
 // Rota Bônus
-router.post('/sessions/:id/purchase', session_controller_1.sessionController.purchaseTicket);
-exports.default = router;
+router.post('/sessions/:id/purchase', sessionController.purchaseTicket);
+export default router;
