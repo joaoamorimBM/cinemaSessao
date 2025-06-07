@@ -9,9 +9,12 @@ export const sessionController = {
       const newSession = await sessionRepository.create(req.body);
       return res.status(201).json(newSession);
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Erro ao criar sessão.' });
-    }
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  console.log('Ocorreu um erro DETECTADO ao criar a sessão:');
+  console.error(error);
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  return res.status(500).json({ message: 'Erro ao criar sessão.' });
+}
   },
 
   getAllSessions: async (req: Request, res: Response): Promise<any> => {

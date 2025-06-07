@@ -7,7 +7,10 @@ export const sessionController = {
             return res.status(201).json(newSession);
         }
         catch (error) {
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+            console.log('Ocorreu um erro DETECTADO ao criar a sessão:');
             console.error(error);
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
             return res.status(500).json({ message: 'Erro ao criar sessão.' });
         }
     },

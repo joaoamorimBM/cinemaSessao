@@ -1,18 +1,17 @@
 import express from 'express';
-import sessionRoutes from './routes/session.routes.js'; // Importa nossas rotas de sessão
+import cors from 'cors'; // 1. Importamos o cors
+import sessionRoutes from './routes/session.routes.js';
 
 const app = express();
 
-// Aplica middlewares globais
+// 2. Usamos o middleware de CORS. Ele libera o acesso para requisições de outras origens.
+// Deve vir ANTES de qualquer outra configuração de rota.
+app.use(cors()); 
+
+// Nossos outros middlewares
 app.use(express.json());
 
-// Registra as rotas da aplicação sob um prefixo /api
-// Agora suas rotas serão /api/sessions, /api/sessions/:id, etc.
+// Nossas rotas
 app.use('/api', sessionRoutes);
-
-// Você poderia registrar outras rotas aqui, como de filmes e ingressos
-// import movieRoutes from './movies/movie.routes';
-// app.use('/api', movieRoutes);
-
 
 export default app;
