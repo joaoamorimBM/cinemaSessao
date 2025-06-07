@@ -8,6 +8,9 @@ RUN apk add --no-cache python3 make g++
 # Limpar cache do npm
 RUN npm cache clean --force
 
+# Instalar TypeScript globalmente
+RUN npm install -g typescript
+
 # Copiar arquivos de dependências
 COPY package*.json ./
 
@@ -16,6 +19,9 @@ RUN npm install --no-cache
 
 # Copiar o resto dos arquivos
 COPY . .
+
+# Garantir permissões corretas
+RUN chmod -R 755 /app
 
 # Executar o build
 RUN npm run build
