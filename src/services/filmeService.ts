@@ -18,7 +18,7 @@ export const buscarFilmePorId = async (id: string): Promise<Filme | null> => {
     console.log(`[FilmeService] Tentando buscar filme com ID ${id}`);
     console.log(`[FilmeService] URL base: ${process.env.FILME_SERVICE_URL}`);
     
-    const response = await filmeServiceApi.get<Filme>(`/filmes/listar/id/${id}`);
+    const response = await filmeServiceApi.get<Filme>(`/filmes/${id}`);
     
     if (response.status === 200 && response.data && response.data.id) {
       console.log(`[FilmeService] Filme encontrado com sucesso: ${response.data.titulo}`);
